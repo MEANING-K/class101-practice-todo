@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
+import TodoInput from 'app/components/TodoInput';
 
 // 페이지 속 요소를 가운데로 해줌
 const Wrapper = styled.div`
@@ -54,6 +55,7 @@ export function HomePage() {
       <Wrapper>
         <Box>
           <Title>할 일</Title>
+          <TodoInput />
           <TodoList>
             <TodoItem>
               <TodoCheck type="checkbox" />
