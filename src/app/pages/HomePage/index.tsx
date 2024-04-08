@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
 import TodoInput from 'app/components/TodoInput';
+import TodoItem from 'app/components/TodoItem';
 
 // 페이지 속 요소를 가운데로 해줌
 const Wrapper = styled.div`
@@ -30,16 +31,6 @@ const Title = styled.h1`
 // 투두리스트 컴포넌트
 const TodoList = styled.div``;
 
-// 투두아이템 컴포넌트
-const TodoItem = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 15px 25px;
-  width: 100%;
-  font-size: 1.2em;
-  border-bottom: 1px solid #eee;
-`;
-
 // 투두체크 컴포넌트
 const TodoCheck = styled.input`
   margin-right: 15px;
@@ -57,10 +48,14 @@ export function HomePage() {
           <Title>할 일</Title>
           <TodoInput />
           <TodoList>
-            <TodoItem>
-              <TodoCheck type="checkbox" />
-              나는 투두
-            </TodoItem>
+            <TodoItem
+              todo={{
+                id: '1',
+                completed: false,
+                content: 'This is Todo 1',
+                editing: false,
+              }}
+            />
           </TodoList>
         </Box>
       </Wrapper>
