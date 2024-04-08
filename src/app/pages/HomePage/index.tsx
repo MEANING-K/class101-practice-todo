@@ -31,12 +31,16 @@ const Title = styled.h1`
 // 투두리스트 컴포넌트
 const TodoList = styled.div``;
 
-// 투두체크 컴포넌트
-const TodoCheck = styled.input`
-  margin-right: 15px;
-`;
-
 export function HomePage() {
+  const [todoList, setTodoList] = React.useState<ITodoItem[]>([
+    {
+      id: '1',
+      content: '1번 투두',
+      completed: true,
+      editing: false,
+    },
+  ]);
+
   return (
     <>
       <Helmet>
@@ -46,16 +50,13 @@ export function HomePage() {
       <Wrapper>
         <Box>
           <Title>할 일</Title>
-          <TodoInput />
+          <TodoInput
+            setTodoList={(todo: ITodoItem) => setTodoList([todo, ...todoList])}
+          />
           <TodoList>
-            <TodoItem
-              todo={{
-                id: '1',
-                completed: false,
-                content: 'This is Todo 1',
-                editing: false,
-              }}
-            />
+            {todoList.map(todo => (
+              <TodoItem todo={todo} />
+            ))}
           </TodoList>
         </Box>
       </Wrapper>
