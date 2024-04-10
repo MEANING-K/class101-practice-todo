@@ -37,7 +37,7 @@ export function HomePage() {
       id: '1',
       content: '1번 투두',
       completed: true,
-      editing: false,
+      editing: true,
     },
   ]);
 
