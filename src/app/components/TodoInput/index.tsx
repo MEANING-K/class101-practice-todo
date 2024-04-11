@@ -6,7 +6,6 @@ const Box = styled.div<{ isEditing?: boolean }>`
   align-items: center;
   padding: ${props => (props.isEditing ? '5px 0px' : '15px 25px')};
   width: 100%;
-  font-size: 1.1em;
   border-bottom: 1px solid #eee;
 `;
 const Input = styled.input`
@@ -16,19 +15,19 @@ const Input = styled.input`
 `;
 
 export default function TodoInput({
-  setTodoList,
+  addTodo,
   isEditing, // Todo 수정용인지 추가용인지 확인할 수 있도록 함
   editContent, // Todo를 수정할 때 기존 Todo 내용을 텍스트 박스에 담기 위해 필요
   editModeTodo, // editing 상태를 변경하는 함수
   editTodo, // Todo 내용을 변경하는 함수
 }: {
-  setTodoList?: (todo: ITodoItem) => void; // 수정하기 모드에서는 사용하지 않으므로 ? 추가
+  addTodo?: (content: string) => void; // 수정하기 모드에서는 사용하지 않으므로 ? 추가
   isEditing?: boolean;
   editContent?: string;
   editModeTodo?: () => void;
   editTodo?: (content: string) => void;
 }) {
-  const [content, setContent] = React.useState<string>('');
+  const [content, setContent] = React.useState<string>(editContent || '');
 
   return (
     <Box isEditing={isEditing}>
@@ -47,14 +46,7 @@ export default function TodoInput({
           if (isEditing) {
             editTodo && editTodo(content);
           } else {
-            setTodoList &&
-              setTodoList({
-                // setTodoList라는 함수가 존재할 때만 함수를 실행
-                id: '0',
-                content: content,
-                completed: false,
-                editing: false,
-              });
+            addTodo && addTodo(content);
             setContent('');
           }
         }}
